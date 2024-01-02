@@ -2,7 +2,8 @@
 import pandas as pd 
 import streamlit as st 
 import plotly.express as px 
-import numpy as np
+
+
 
 # %% [markdown]
 # # Items to include in the app:
@@ -206,3 +207,8 @@ fig3.show()
 
 # %% [markdown]
 # By using these interactive models, we are able to see how different factors can affect the market price of a vehicle. 
+
+
+
+
+ 
