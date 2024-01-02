@@ -20,7 +20,7 @@ data = pd.read_csv('vehicles_us.csv')
 # %%
 #fill in missing values of price and model_year column
 data['price'] = data['price'].fillna(0)
-data['model_year'] = data['model_year'].fillna(0)
+data['model_year'] = data['model_year'].fillna(0).astype(int)
 
 # %%
 # create a new column for manufacturer
@@ -214,5 +214,3 @@ fig3.show()
 st.write("""
 #### By using these interactive models, we are able to see how different factors can affect the market price of a vehicle. 
 """)
-
-
