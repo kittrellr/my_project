@@ -39,6 +39,7 @@ data.duplicated()
 #convert model_year column from float to int
 
 data['model_year'] = data['model_year'].astype(int)
+pd.options.display.float_format = '{:,.0f}'.format
 data.head()
 
 # %%
