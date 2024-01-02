@@ -1,6 +1,8 @@
+# %%
 import pandas as pd 
 import streamlit as st 
 import plotly.express as px 
+import numpy as np
 
 # %% [markdown]
 # # Items to include in the app:
@@ -12,12 +14,17 @@ import plotly.express as px
 # %%
 #read in data
 data = pd.read_csv('vehicles_us.csv')
-data.head()
+
+
+# %%
+#drop rows with NaN values in price column
+data = data.dropna(subset=['price'])
 
 # %%
 # create a new column for manufacturer
 data['manufacturer'] = data['model'].apply(lambda x: x.split()[0])
 data.head()
+
 
 # %%
 data.shape
@@ -25,6 +32,17 @@ data.shape
 # %%
 # checking for duplicate rows. Results show no duplicated rows in the dataframe
 data.duplicated()
+
+# %%
+#convert model_year column from float to int
+
+#drop nan values first
+data = data.dropna(subset=['model_year'])
+data['model_year'] = data['model_year'].astype(int)
+data.head()
+
+# %%
+
 
 # %%
 # Create header with an option to filter the data and a checkbox to show only electric vehicles:
@@ -41,7 +59,7 @@ show_electric_cars = st.checkbox('Show only electric vehicles')
 
 
 # %%
-show_electric_cars
+
 
 # %%
 if show_electric_cars:
@@ -62,15 +80,17 @@ min_price, max_price = int(data['price'].min()), int(data['price'].max())
 
 #create slider
 price_range = st.slider(
-    "Choose price", 
+    "Choose price range", 
     value=(min_price,max_price),min_value=min_price,max_value=max_price )
 
 # %%
-price_range
+
 
 # %%
 # Now we'll filter the dataset based on the users chosen variables
 filtered_table = data[(data.type==type_choice) & (data.price>=price_range[0]) & (data.price <= price_range[1])]
+
+filtered_table = pd.DataFrame(np.random.randn(50,20))
 
 #show the final table in streamlit
 st.table(filtered_table)
@@ -78,15 +98,15 @@ st.table(filtered_table)
 # %%
 st.header('Price Analysis')
 st.write(""" 
-         #### Let's see how different factors can influence the price of a vehicle. We'll take a look at the distribution of the prices based on manufacturer, model, and condition of vehicle.
+         #### Let's see how different factors can influence the price of a vehicle. We'll take a look at the distribution of the prices based on manufacturer, type of vehicle, and condition of vehicle.
          """ )
-# We'll create a histogram with the parameter of choice: manufacturer, odometer, condition of vehicle 
+# We'll create a histogram with the parameter of choice: manufacturer  condition of vehicle 
 
 # Creating list of options for histogram 
-list_for_hist = ['manufacturer', 'model', 'condition']
+list_for_hist = ['manufacturer', 'type', 'condition']
 
 # Create select box for options
-choice_for_hist = st.selectbox('Factors for price distribution', list_for_hist)
+choice_for_hist = st.selectbox('Choose one', list_for_hist)
 
 # plot histogram where price_usd is based on the choice made in the selectbox
 fig1 = px.histogram(data, x='price', color=choice_for_hist, title= "<b> Price by {}</b>".format(choice_for_hist))
@@ -105,16 +125,16 @@ fig1.show()
 data['age'] = 2023-data['model_year']
 
 def age_category(x):
-    if x<5: return '<5'
-    elif x>=5 and x<10: return '5-10'
-    elif x>= 10 and x<20: return '10-20'
-    else: return '>20'
+    if x<5: return 'less than 5 years'
+    elif x>=5 and x<10: return '5-10 years'
+    elif x>= 10 and x<20: return '10-20 years'
+    else: return 'over 20 years'
 
 data['age_category']= data['age'].apply(age_category)
 
 
 # %%
-data['age_category']
+
 
 # %%
 # We also want to take a look at which vehicle manufacturer holds the best value. To do this, we'll compare the prices based off the age category and manufacturer. 
@@ -131,7 +151,7 @@ select_age = st.selectbox('Select Age', age_choice)
 filtered_data = data[(data['manufacturer'] == select_man) & (data['age_category'] == select_age)]
 
 # plot histogram based off user selection of manufacturer and age
-fig2 = px.histogram(filtered_data, x='price',  title= f"Price Distribution for {select_man} Vehicles ({select_age} Years)")
+fig2 = px.histogram(filtered_data, x='price',  title= f"Price Distribution for {select_man} Vehicles ({select_age})")
 
 #add to streamlit
 st.plotly_chart(fig2)
@@ -183,3 +203,6 @@ st.plotly_chart(fig3)
 
 # %%
 fig3.show()
+
+# %% [markdown]
+# By using these interactive models, we are able to see how different factors can affect the market price of a vehicle. 
