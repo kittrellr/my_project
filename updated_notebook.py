@@ -18,8 +18,9 @@ data = pd.read_csv('vehicles_us.csv')
 
 
 # %%
-#drop rows with NaN values in price column
-data = data.dropna(subset=['price'])
+#fill in missing values of price and model_year column
+data['price'] = data['price'].fillna(0)
+data['model_year'] = data['model_year'].fillna(0)
 
 # %%
 # create a new column for manufacturer
@@ -37,8 +38,6 @@ data.duplicated()
 # %%
 #convert model_year column from float to int
 
-#drop nan values first
-data = data.dropna(subset=['model_year'])
 data['model_year'] = data['model_year'].astype(int)
 data.head()
 
@@ -66,9 +65,6 @@ show_new_ads = st.checkbox('Show vehicles listed in last 30 days')
 
 
 # %%
-
-
-# %%
 if show_new_ads:
     data = data[data.days_listed <= 30]
 
@@ -89,9 +85,6 @@ min_price, max_price = int(data['price'].min()), int(data['price'].max())
 price_range = st.slider(
     "Choose price range", 
     value=(min_price,max_price),min_value=min_price,max_value=max_price )
-
-# %%
-
 
 # %%
 # Now we'll filter the dataset based on the users chosen variables
@@ -138,9 +131,6 @@ def age_category(x):
     else: return 'over 20 years'
 
 data['age_category']= data['age'].apply(age_category)
-
-
-# %%
 
 
 # %%
@@ -205,6 +195,9 @@ plt.ylabel('Price USD')
 
 # Display boxplot in streamlit
 st.pyplot(plt) 
+
+# %%
+st.write('We can see that the longer a vehicle has been listed, the lower the price.')
 
 # %%
 st.write(""" 
