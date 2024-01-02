@@ -20,7 +20,7 @@ data = pd.read_csv('vehicles_us.csv')
 # %%
 #fill in missing values of price and model_year column
 data['price'] = data['price'].fillna(0)
-data['model_year'] = data['model_year'].fillna(0).astype(int)
+data['model_year'] = data['model_year'].fillna(0000).astype(int)
 
 # %%
 # create a new column for manufacturer
