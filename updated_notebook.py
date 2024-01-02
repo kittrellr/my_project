@@ -43,7 +43,10 @@ data['model_year'] = data['model_year'].astype(int)
 data.head()
 
 # %%
+# view data
+st.header('Data Viewer')
 
+st.dataframe(data)
 
 # %%
 # Create header with an option to filter the data and a checkbox to show only electric vehicles:
@@ -91,10 +94,10 @@ price_range = st.slider(
 # Now we'll filter the dataset based on the users chosen variables
 filtered_table = data[(data.type==type_choice) & (data.price>=price_range[0]) & (data.price <= price_range[1])]
 
-filtered_table = pd.DataFrame(np.random.randn(50,20))
+
 
 #show the final table in streamlit
-st.table(filtered_table)
+st.dataframe(filtered_table)
 
 # %%
 st.header('Price Analysis')
