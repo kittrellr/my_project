@@ -5,4 +5,3 @@ altair==5.0.1
 plotly==5.15.0
 matplotlib==3.7.2
 seaborn==0.12.2
-numpy==1.21.0
