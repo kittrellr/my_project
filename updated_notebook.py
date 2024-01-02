@@ -43,6 +43,9 @@ data['model_year'] = data['model_year'].astype(int)
 data.head()
 
 # %%
+st.header('Used Car Market')
+
+# %%
 # view data
 st.header('Data Viewer')
 
@@ -59,15 +62,15 @@ st.write("""
 
 
 
-show_electric_cars = st.checkbox('Show only electric vehicles')
+show_new_ads = st.checkbox('Show vehicles listed in last 30 days')
 
 
 # %%
 
 
 # %%
-if show_electric_cars:
-    data = data[data.fuel==('electric', 'hybrid')]
+if show_new_ads:
+    data = data[data.days_listed <= 30]
 
 
 # %%
@@ -143,6 +146,11 @@ data['age_category']= data['age'].apply(age_category)
 # %%
 # We also want to take a look at which vehicle manufacturer holds the best value. To do this, we'll compare the prices based off the age category and manufacturer. 
 
+st.header('Best Value')
+st.write("""
+#### Which manufacturer holds the best value? Use the drop down menus to compare vehicle prices by manufacturer and age of vehicle.
+""")
+
 # Add select box to choose manufacturer
 vehicle_man = data['manufacturer'].unique()
 select_man = st.selectbox('Select Manufacturer', vehicle_man) 
@@ -208,7 +216,9 @@ st.plotly_chart(fig3)
 # %%
 fig3.show()
 
-# %% [markdown]
-# By using these interactive models, we are able to see how different factors can affect the market price of a vehicle. 
+# %%
+st.write("""
+#### By using these interactive models, we are able to see how different factors can affect the market price of a vehicle. 
+""")
 
 
