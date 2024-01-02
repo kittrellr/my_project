@@ -31,7 +31,7 @@ data.duplicated()
 # Create header with an option to filter the data and a checkbox to show only electric vehicles:
 # Let users filter data by type of vehicle they are searching for.
 
-st.header('Used Vehicle Inventory', divider='blue')
+st.header('Used Vehicle Inventory')
 st.write(""" 
          #### Filter the data below to search inventory by vehicle type and price range. 
          """) 
