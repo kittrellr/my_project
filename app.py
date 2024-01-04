@@ -10,7 +10,7 @@ import plotly.express as px
 # Web application to create an easy, fun, and exciting way for users to explore the pre-owned vehicle market. The goal is to anticpate the user's needs and provide the tools for them to make the best decision when buying or selling a used vehicle. The app will use interactive models for the user to do their own price analysis and vehicle comparisons. We will use Python for coding, Streamlit for app creation, and Render for deployment. The project will be conducted through GitHub and VS code. This is for simulation and practice only. Instruction and review are provided by the TripleTen learning team. 
 
 # %% [markdown]
-# ## Code Reference
+# # Code Reference
 # For missing or unknown values, they have been filled in the following ways:
 # - price: 0
 # - model_year: median of 'model' and 'model_year'
@@ -72,8 +72,6 @@ data['price'] = data['price'].fillna(0)
 data['paint_color'] = data['paint_color'].fillna('unknown')
 data['is_4wd'] = data['is_4wd'].fillna(0)
 
-
-
 # %% [markdown]
 # # Now to use the transform method to group the data by relevant columns and find appropriate ways to fill in the missing values
 
@@ -87,7 +85,6 @@ data['model_year'] = data[['model_year', 'model']].groupby('model').transform(la
 
 # For the odometer column, we will group by the model and model_year columns to get the median of the odometer readings and fill in the missing values
 data ['odometer'] = data.groupby(['model_year', 'model'])['odometer'].transform(lambda x: x.fillna(x.median()))
-
 
 # %% [markdown]
 # # Let's check our dataframe to be sure that all of our missing values have been filled.
@@ -316,12 +313,12 @@ st.write("""
 
 
 def list_age_category(x):
-    if x<7: return '<7'
-    elif x>=7 and x<14: return '7-14'
-    elif x>= 14 and x<30: return '14-30'
-    elif x>= 30 and x<60: return '30-60'
-    elif x>= 60 and x<90: return '60-90'
-    elif x>= 90 and  x<180: return '90-180'
+    if x<7: return 'less than 7 days'
+    elif x>=7 and x<14: return '7-14 days'
+    elif x>= 14 and x<30: return '14-30 days'
+    elif x>= 30 and x<60: return '30-60 days'
+    elif x>= 60 and x<90: return '60-90 days'
+    elif x>= 90 and  x<180: return '90-180 days'
     else: return '>180'
 
 data['list_age_category']= data['days_listed'].apply(list_age_category)
