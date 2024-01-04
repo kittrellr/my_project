@@ -12,7 +12,7 @@ At this time, this code is not an open source coding. This project is for simula
 
 
 # Thank you
-Dmitrii thank you for such a wonderful and helpful review! Your guidence and suggestions have added so much value to this project and my learning experience! 
+Dmitrii thank you for such a wonderful and helpful review! Your guidence and suggestions have added so much value to this project and my learning experience! I do have a question though. I'm not sure why my code for the transform columns and data shape are displaying on my web app. I've tried deleting and making new code cells but for some reason they still appear. Do you know what I may be missing? 
 
 
 
