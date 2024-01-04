@@ -11,7 +11,8 @@ The app uses interactive models for the user to see whats currently on the marke
 At this time, this code is not an open source coding. This project is for simulation and practice web app creation. 
 
 
-
+# Thank you
+Dmitrii thank you for such a wonderful and helpful review! Your guidence and suggestions have added so much value to this project and my learning experience! 
 
 
 
