@@ -32,7 +32,7 @@ import plotly.express as px
 #read in data
 
 data = pd.read_csv('vehicles_us.csv')
-data.head()
+
 
 # %% [markdown]
 # # The data is arranged nicely so no need to restructure anything at this time. We will go ahead and add a column for manufacturer sine we'll want that information for our user interface.
@@ -41,7 +41,7 @@ data.head()
 # create a new column for manufacturer
 
 data['manufacturer'] = data['model'].apply(lambda x: x.split()[0])
-data.head()
+
 
 # %% [markdown]
 # # Now we will check our data set for any duplicated rows
@@ -113,7 +113,7 @@ data.shape
 
 data['model_year'] = data['model_year'].astype(int)
 
-data.head()
+
 
 # %% [markdown]
 # ## Now that our dataframe is cleaned up, let's work on building our web app by incorporating tables, charts, and applying streamlit code! 
@@ -149,9 +149,7 @@ st.dataframe(data)
 # Create header and brief description that tells user what to do next
 st.header('Pre-Owned Vehicle Search')
 st.write(""" 
-         #### Use the interactive models below to search the inventory for your specific wants and needs. 
-         ## Based on your search criteria, you can compare prices of different vehicle listings by their condition, mileage, type, and manufacturer. 
-         # If you want to view and compare vehicles listed in the past 30 days, select the checkbox below. The results and price charts will only show inventory listed in the last 30 days.   
+         #### Use the interactive models below to search the inventory for your specific wants and needs. Based on your search criteria, you can compare prices of different vehicle listings by their condition, mileage, type, and manufacturer. If you want to view and compare vehicles listed in the past 30 days, select the checkbox below. The results and price charts will only show inventory listed in the last 30 days.   
          """) 
 
 
@@ -226,7 +224,7 @@ st.dataframe(filtered_table)
 # Create title/header for section using Streamlit. 
 st.header('Price Comparison')
 st.write(""" 
-         #### Let's see how different factors can influence the price of a vehicle. Select an option below to see the price distribution based on manufacturer, type of vehicle, and condition of vehicle.
+         #### Let's see how different factors can influence the price of a vehicle. Select an option below to see the price distribution based on manufacturer, type of vehicle, and condition of vehicle. Double click an item on the legend to view just that item distribution.
          """ )
 
 # We'll create a histogram with the parameter of choice: manufacturer, type, & condition of vehicle. 
