@@ -57,10 +57,6 @@ data.duplicated()
 # %% [markdown]
 # # Now we'll check our data for missing values 
 
-# %%
-# check the number and percentage of missing values in the dataset
-
-data.isnull().sum()*100/len(data)
 
 # %% [markdown]
 # # We will fill in the missing values for each column using fillna and transform methods.
@@ -92,15 +88,12 @@ data ['odometer'] = data.groupby(['model_year', 'model'])['odometer'].transform(
 # %%
 # check the number and percentage of missing values in the dataset
 
-data.isnull().sum()*100/len(data)
-
 # %% [markdown]
 # # Wonderful! Our columns no longer have missing data
 
 # %%
 # Checking the data shape to ensure it has the number of columns and rows as expected and it does.
 
-data.shape
 
 # %% [markdown]
 # # The model_year column has ',' which is not how we typically write out a year. I will change the column data from a float to integer to see if that can eliminate that issue. 
