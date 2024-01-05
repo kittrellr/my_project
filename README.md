@@ -11,8 +11,7 @@ The app uses interactive models for the user to see whats currently on the marke
 At this time, this code is not an open source coding. This project is for simulation and practice web app creation. 
 
 
-# Thank you
-Dmitrii thank you for such a wonderful and helpful review! Your guidence and suggestions have added so much value to this project and my learning experience! I do have a question though. I'm not sure why my code for the transform columns and data shape are displaying on my web app. I've tried deleting and making new code cells but for some reason they still appear. Do you know what I may be missing? 
+ 
 
 
 
